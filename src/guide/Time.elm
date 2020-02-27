@@ -1,3 +1,5 @@
+module Guide.Time exposing (Model,Msg)
+
 import Browser
 import Html exposing (..)
 import Task
@@ -19,7 +21,7 @@ main =
 
 
 type alias Model =
-    { zone : Time.zone
+    { zone : Time.Zone
     , time : Time.Posix
     }
 
@@ -46,7 +48,7 @@ update msg model =
 
         AdjustTimeZone newZone ->
             ( { model | zone = newZone } 
-            , Cmd.none)
+            , Cmd.none
             )
 
 
@@ -54,7 +56,7 @@ update msg model =
 
 
 subscriptions : Model -> Sub Msg
-subscritions model =
+subscriptions model =
     Time.every 1000 Tick
 
 
@@ -65,9 +67,9 @@ subscritions model =
 view : Model -> Html Msg
 view model =
     let
-        hour   = String.fromtInt (Time.toHour   model.zone model.time )
-        minute = String.fromtInt (Time.toMinute model.zone model.time )
+        hour   = String.fromInt (Time.toHour   model.zone model.time )
+        minute = String.fromInt (Time.toMinute model.zone model.time )
         second = String.fromInt  (Time.toSecond model.zone model.time )
     in
 
-    h1 [] [ text ( hour ++ ":" ++ minute =+ ":" ++ second ) ]
+    h1 [] [ text ( hour ++ ":" ++ minute ++ ":" ++ second ) ]
