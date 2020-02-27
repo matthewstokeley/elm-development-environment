@@ -52,6 +52,7 @@ update msg model =
 
 -- SUBSCRIPTIONS
 
+
 subscriptions : Model -> Sub Msg
 subscritions model =
     Time.every 1000 Tick
@@ -60,6 +61,7 @@ subscritions model =
 
 -- VIEW
 
+
 view : Model -> Html Msg
 view model =
     let
@@ -67,4 +69,5 @@ view model =
         minute = String.fromtInt (Time.toMinute model.zone model.time )
         second = String.fromInt  (Time.toSecond model.zone model.time )
     in
+
     h1 [] [ text ( hour ++ ":" ++ minute =+ ":" ++ second ) ]
